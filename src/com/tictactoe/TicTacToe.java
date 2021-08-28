@@ -48,7 +48,6 @@ public class TicTacToe {
 			}
 			
 		}
-		System.out.println(position);
 		return position;
 	}
 }
