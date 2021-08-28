@@ -7,5 +7,6 @@ public class TicTacToeRunner {
 		char player = ticTacToeGame.chooseXorO();
 		char computer = ( player == 'X')? 'O':'X';
 		System.out.println("Player: "+player+" Computer: "+computer);
+		ticTacToeGame.showBoard(board);
 	}
 }
