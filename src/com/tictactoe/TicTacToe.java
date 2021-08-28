@@ -34,19 +34,21 @@ public class TicTacToe {
 		return false;
 	}
 	
-	public Character[] makeMove(Character[] charArr,char player,char computer) {
+	public int makeMove(Character[] charArr,char player) {
 		Scanner sc = new Scanner(System.in);
-		int position = 0;
-		System.out.println("Enter position: ");
-		position = sc.nextInt();
-		if (position > 9 || position<=0) {
-			System.out.println("Enter valid position(1-9)"); 
-			position = sc.nextInt();
-		}
 		
-		if (isEmpty(charArr, position)) {
-			charArr[position]=player;
+		int position = 0;
+		while (true) {
+			System.out.println("Enter position: ");
+			position = sc.nextInt();
+			if (position <= 9 || position>0) {
+				if (isEmpty(charArr, position)) {
+					break;
+				}
+			}
+			
 		}
-		return charArr;
+		System.out.println(position);
+		return position;
 	}
 }
