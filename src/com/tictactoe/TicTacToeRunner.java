@@ -25,7 +25,7 @@ public class TicTacToeRunner {
 				}
 				else {
 					System.out.print("Computer ");
-					board = ticTacToeGame.makeMove(board, computer);
+					board = ticTacToeGame.computerMove(board, computer);
 					if (ticTacToeGame.winning(board,computer)) {
 						System.out.println("Computer won.");
 						break;

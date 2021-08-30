@@ -106,4 +106,19 @@ public class TicTacToe {
 		}
 		return false;
 	}
+	
+	public Character[] computerMove(Character[] board, char gameCharacter) {
+		
+		for(int i=1;i<board.length;i++) {
+			Character[] charArr = board;
+			if (isEmpty(charArr,i)){
+				charArr[i]=gameCharacter;
+				if (winning(charArr, gameCharacter)) {
+					board[i]=gameCharacter;
+					return board;
+				}
+			}
+		}
+		return board;
+	}
 }
