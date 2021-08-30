@@ -37,13 +37,36 @@ public class TicTacToe {
 		while (true) {
 			System.out.println("Enter position: ");
 			position = sc.nextInt();
-			if (position <= 9 || position>0) {
+			if (position <= 9 && position>0) {
 				if (isEmpty(charArr, position)) {
 					charArr[position] = gameCurrentPlayer;
 					break;
 				}
 			}
+			else System.out.println("Enter valid position (1-9):");
 		}
 		return charArr;
+	}
+	
+	public String toss() {
+		Scanner sc = new Scanner(System.in);
+		
+		int check = (int)((Math.random()*10)%2);
+		System.out.println("Enter choice 1.Heads 2.Tails:");
+		int choice = sc.nextInt();
+		int heads = 1,tails = 0;
+		
+		if (check == heads && choice == 1) {
+			System.out.println("You won toss,You start:");
+			return "player";
+		}
+		else if (check==tails && choice == 0) {
+			System.out.println("You won toss, You start:");
+			return "player";
+		}
+		else {
+			System.out.println("You lost the toss, Computer starts:");
+			return "computer";
+		}
 	}
 }

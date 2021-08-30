@@ -8,7 +8,10 @@ public class TicTacToeRunner {
 		char computer = ( player == 'X')? 'O':'X';
 		System.out.println("Player: "+player+" Computer: "+computer);
 		ticTacToeGame.showBoard(board);
-		board = ticTacToeGame.makeMove(board, player);
+		if (ticTacToeGame.toss()=="player") {
+			board = ticTacToeGame.makeMove(board, player);
+		}
+		else board = ticTacToeGame.makeMove(board, computer);
 		ticTacToeGame.showBoard(board);
 	}
 }
