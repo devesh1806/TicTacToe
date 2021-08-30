@@ -26,15 +26,11 @@ public class TicTacToe {
 	}
 	
 	public boolean isEmpty(Character[] charArr, int position) {
-		for (int i=1;i<charArr.length;i++) {
-			if (i==position && charArr[i]=='_') {
-				return true;
-			}
-		}
-		return false;
+		
+		return charArr[position]=='_';
 	}
 	
-	public int makeMove(Character[] charArr,char player) {
+	public Character[] makeMove(Character[] charArr,char gameCurrentPlayer) {
 		Scanner sc = new Scanner(System.in);
 		
 		int position = 0;
@@ -43,11 +39,11 @@ public class TicTacToe {
 			position = sc.nextInt();
 			if (position <= 9 || position>0) {
 				if (isEmpty(charArr, position)) {
+					charArr[position] = gameCurrentPlayer;
 					break;
 				}
 			}
-			
 		}
-		return position;
+		return charArr;
 	}
 }
