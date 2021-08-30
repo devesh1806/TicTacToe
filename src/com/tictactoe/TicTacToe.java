@@ -107,18 +107,42 @@ public class TicTacToe {
 		return false;
 	}
 	
-	public Character[] computerMove(Character[] board, char gameCharacter) {
-		
+	private int checkComputerWin(Character[] board, char computer) {
 		for(int i=1;i<board.length;i++) {
-			Character[] charArr = board;
-			if (isEmpty(charArr,i)){
-				charArr[i]=gameCharacter;
-				if (winning(charArr, gameCharacter)) {
-					board[i]=gameCharacter;
-					return board;
-				}
+			if(board[i] == '_') {
+				board[i] = computer;
+				if(winning(board, computer)) return i;
+				else board[i] = '_';
 			}
+		}		
+		return 0;
+	}
+	
+	public Character[] computerMove(Character[] board, char gameCharacter) {
+		if (checkComputerWin(board, gameCharacter)!=0) {
+			board[checkComputerWin(board, gameCharacter)]=gameCharacter;
+			return board;
+		}
+		char opponentCharacter = (gameCharacter == 'X')? 'O':'X';
+		int index = opponentWin(board, opponentCharacter,gameCharacter);
+		if (index!=0) {
+			board[index]=gameCharacter;
+			return board;
 		}
 		return board;
+	}
+	
+	private int opponentWin(Character[] board,char opponentCharacter,char gameCharacter) {
+		
+		for(int i=1;i<board.length;i++) {
+			if(board[i] == '_') {
+				board[i] = opponentCharacter;
+				if(winning(board, opponentCharacter)) {
+					return i;
+				}
+				else board[i] = '_';
+			}
+		}		
+		return 0;
 	}
 }
