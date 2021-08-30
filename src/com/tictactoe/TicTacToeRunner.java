@@ -9,33 +9,37 @@ public class TicTacToeRunner {
 		System.out.println("Player: "+player+" Computer: "+computer);
 		ticTacToeGame.showBoard(board);
 		int chance = (ticTacToeGame.toss()=="player")? 1:0;
-		if (ticTacToeGame.emptySpace(board)) {
-			if (chance == 1) {
-				System.out.print("Player ");
-				board = ticTacToeGame.makeMove(board, player);
-				if (ticTacToeGame.winning(board,player)) {
-					System.out.println("Player won.");
+		while(true) {
+			if (ticTacToeGame.emptySpace(board)) {
+				if (chance == 1) {
+					System.out.print("Player ");
+					board = ticTacToeGame.makeMove(board, player);
+					if (ticTacToeGame.winning(board,player)) {
+						System.out.println("Player won.");
+						break;
+					}
+					else {
+						//condition for changing turn.
+						chance = 0;
+					}
 				}
 				else {
-					//condition for changing turn.
-					chance = 0;
+					board = ticTacToeGame.computerMove(board, computer);
+					if (ticTacToeGame.winning(board,computer)) {
+						System.out.println("Computer won.");
+						break;
+					}
+					else {
+						chance = 1;
+					}
 				}
+				ticTacToeGame.showBoard(board);
 			}
 			else {
-				board = ticTacToeGame.computerMove(board, computer);
-				if (ticTacToeGame.winning(board,computer)) {
-					System.out.println("Computer won.");
-				}
-				else {
-					chance = 1;
-				}
+				System.out.println("Game Tie.");
+				break;
 			}
-			ticTacToeGame.showBoard(board);
-		}
-		else {
-			System.out.println("Game Tie.");
-		}
 			
-		
+		}
 	}
 }
