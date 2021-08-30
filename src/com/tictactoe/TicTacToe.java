@@ -129,6 +129,12 @@ public class TicTacToe {
 			board[index]=gameCharacter;
 			return board;
 		}
+		if(board[1] == '_' || board[3] == '_' || board[7] == '_' || board[9] == '_') {
+			if(board[1] == '_') board[1] = gameCharacter;
+			else if (board[3] == '_')  board[3] = gameCharacter;
+			else if (board[7] == '_')  board[7] = gameCharacter;
+			else board[9] = gameCharacter;
+		}
 		return board;
 	}
 	
