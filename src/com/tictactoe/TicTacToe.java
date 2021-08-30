@@ -35,7 +35,7 @@ public class TicTacToe {
 		
 		int position = 0;
 		while (true) {
-			System.out.println("Enter position: ");
+			System.out.print("Enter position: ");
 			position = sc.nextInt();
 			if (position <= 9 && position>0) {
 				if (isEmpty(charArr, position)) {
@@ -68,5 +68,42 @@ public class TicTacToe {
 			System.out.println("You lost the toss, Computer starts:");
 			return "computer";
 		}
+	}
+
+	public boolean winning(Character[] board,char playerCharacter) {
+		for(int i=1;i<board.length;i++) {
+			if (i<=3) {
+				if ( i+2 <4 && board[i].equals(playerCharacter) && board[i+1].equals(playerCharacter) && board[i+2].equals(playerCharacter)) {
+					return true;
+				}
+				else if (i+8<=9 && board[i].equals(playerCharacter) && board[i+4].equals(playerCharacter) && board[i+8].equals(playerCharacter)) {
+					return true;
+				}
+				else if (i+6<=9 && board[i].equals(playerCharacter) && board[i+3].equals(playerCharacter) && board[i+6].equals(playerCharacter)) {
+					return true;
+				}
+			}
+			else if (i>3 && i<=6) {
+				if ( i+2 <7 && board[i].equals(playerCharacter) && board[i+1].equals(playerCharacter) && board[i+2].equals(playerCharacter)) {
+					return true;
+				}
+			}
+			else {
+				if ( i+2 <=9 && board[i].equals(playerCharacter) && board[i+1].equals(playerCharacter) && board[i+2].equals(playerCharacter)) {
+					return true;
+				}
+				else if (i-4<4 && board[i].equals(playerCharacter) && board[i-2].equals(playerCharacter) && board[i-4].equals(playerCharacter)) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	public boolean emptySpace(Character[] board) {
+		for(int i=1;i<10;i++) {
+			if (board[i].equals('_')) return true;
+		}
+		return false;
 	}
 }

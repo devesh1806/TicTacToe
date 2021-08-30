@@ -8,10 +8,39 @@ public class TicTacToeRunner {
 		char computer = ( player == 'X')? 'O':'X';
 		System.out.println("Player: "+player+" Computer: "+computer);
 		ticTacToeGame.showBoard(board);
-		if (ticTacToeGame.toss()=="player") {
-			board = ticTacToeGame.makeMove(board, player);
+		int chance = (ticTacToeGame.toss()=="player")? 1:0;
+		while(true) {
+			if (ticTacToeGame.emptySpace(board)) {
+				if (chance == 1) {
+					System.out.print("Player ");
+					board = ticTacToeGame.makeMove(board, player);
+					if (ticTacToeGame.winning(board,player)) {
+						System.out.println("Player won.");
+						break;
+					}
+					else {
+						//condition for changing turn.
+						chance = 0;
+					}
+				}
+				else {
+					System.out.print("Computer ");
+					board = ticTacToeGame.makeMove(board, computer);
+					if (ticTacToeGame.winning(board,computer)) {
+						System.out.println("Computer won.");
+						break;
+					}
+					else {
+						chance = 1;
+					}
+				}
+				ticTacToeGame.showBoard(board);
+			}
+			else {
+				System.out.println("Game Tie.");
+				break;
+			}
+			
 		}
-		else board = ticTacToeGame.makeMove(board, computer);
-		ticTacToeGame.showBoard(board);
 	}
 }
